@@ -1,0 +1,161 @@
+50 个知识点
+王思惠
+
+1.	盒子模型
+盒子模型分为W3C标准盒子模型、IE 盒子模型。一般在代码中使用 box-sizing 属性进行定义。
+box-sizing:content-box 代表标准盒子模型
+box-sizing:border-box  代表怪异盒子模型
+box-sizing 默认值为content-box
+标准盒子模型与 IE 盒子模型的核心差异在于：IE 盒子模型的 content 部分包含了 border 和 padding. 即 IE 盒子宽高固定的情况下，修改 border 和 padding 值，该盒子的大小不会改变。
+
+2.	BFC (Block Fromatting Context) (块级格式化上下文)
+BFC 是一个独立的布局环境，其中的元素布局不受外界影响。
+BFC 的应用:
+1.	给两个盒子的父元素加上 BFC 布局避免垂直盒子排列的 margin 折叠问题。
+2.	给父块加上 BFC 布局避免父块和子块的 margin-top 一起坍塌问题。
+3.	给元素加上 BFC 布局避免它和浮动元素重叠。
+4.	清浮动。
+如何触发 BFC 布局：
+1.	Float 的值不是 none.
+2.	Position 的值不是 static 或者 relative.
+3.	Display 的值是 inline-block,table-cell,flex,table-caption 或者 inline-flex
+4.	Overflow 的值不是 visible
+
+3.	H5 新增了的新特性
+1.	语义化标签（语义化标签的出现是为了简化编程，并不意味着有了语义化就有什么特殊性，本质还是div）
+Header(头部)，nav(导航)，main(主体)，article(文章)，aside(侧边栏)，footer(底部)
+2.	表单新增的 type 属性
+Email,tel,url,number,search,range,color,time,date,datetime,datetime-local,month,week
+3.  表单的其他属性
+	   Placeholder,autofocus,required,pattern,multiple,datalist
+4.  h5 新增表单事件
+	   Oninput:内容改变即触发
+	   Onkeyup:键盘弹起时触发
+	   Oninvalid:验证不通过时触发
+全屏接口，上传图片实时预览+进度条
+
+4.	伪类 :before 和 :after 的使用|伪类和伪元素有什么区别|常见伪类有哪些
+:before 和 :after 的作用就是在指定的元素内容（非元素本身）之前或者之后插入一个包含 content 的属性指定内容的行内元素。
+:after 也常用于清除浮动。
+伪类：用于向某些选择器添加特殊的效果。例如：a 标签的 :link,:visited,:hover 等。
+伪元素：是 html 中不存在的元素，用于将特殊效果添加到某些选择器。
+一般来说，双冒号代表伪元素。如 ::before,::after 等，单冒号用于表示伪类。
+常见的伪类：
+	链接伪类选择器：a:link,a:visited,a:hover,a:active
+	结构伪类选择器：li:first-child,li:last-child,li:nth-child(n),li:nth-child(odd),li:nth-child(even),li:nth-child(2n/3n/4n)
+	目标伪类选择器： :target 选择该文档中特定 “id” 元素
+
+5.	块水平居中的方法有哪些
+父元素不添加样式|子元素不知道宽高 水平居中
+	Margin:0 auto;
+	Position:relative;left:50%;transform:translate(-50%)
+父元素可以添加样式|子元素水平居中
+	父元素设置：display:flex;flex-direction:column; 子元素设置：align-self:center
+
+6.	b 和 strong 的区别 | I 和 em 的区别
+两者在网页中显示效果一样，单实际目的不同。b 标签对应 bold,即文本加粗，其目的仅仅是为了加粗显示文本，是一种样式/风格需求；strong 这个标签意思是加强，表示该文本比较重要，提醒读者注意。
+还有一种说法：盲人朋友使用阅读设备阅读网络时，strong 会重读，b 不会。
+I 是为了显示样式斜体而斜体，em 为了标明重点而斜体。
+
+7.	link 和 @import 的区别
+	link 属于 XHTML 标签，@import 则是 css 提供的一种方式。
+	link 标签除了可以加载 css 外，还可以做很多其他事情，比如定义 RSS, 定义 rel 连接属性等，@import 只能加载 CSS.
+	当一个界面被加载的时候，link 引用的 css 会同事加载，而 @import 引用的 css 会等到页面全部被下载才加载。
+	@import 只有在 ie5 以上才识别，link 无兼容性问题。
+	可以通过 JS 添加 link 标签来控制样式加载位置，覆盖等。@import 无法做到。
+
+8.	label 标签的作用
+label 标签不会向用户呈现任何特殊效果，不过它为鼠标用户改进了可用性。如果在 label 元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。
+应用场景一：当需要做一个图片上传功能时，可以将 input 标签放到 lable 中，并在lable 中放置需要的图片或者文字。当用户点击 label 时，就相当于点击了 input。
+应用场景二：当有一个原型单选框时，使用 lable 作为提示文字，这样点击文字就相当于点击了单选框，优化用户体验。
+
+9.	$(document).ready 和 window.onload 异同
+$(document).ready 和 window.onload 都是在页面加载完执行的函数，大多数情况下差别不大，但也有区别。
+$(document).ready 是 DOM 结构绘制完毕后就执行，不必等到加载完毕，不必等到页面中图片或者其他外部文件都加载完毕。并且可以写多个 .ready。
+Window.onload 是页面所有元素都加载完毕，包括图片等所有元素。只能执行一次。
+$(document).ready 先执行完毕。
+
+10.	事件冒泡|阻止事件冒泡|事件委托
+事件冒泡：事件按照从最特定的事件目标到最不特定的事件目标（document）的顺序触发。
+事件委托：事件从最不精确的对象开始触发，然后到最精确。
+事件捕获和事件冒泡属于两个相反的过程。假设有这样一个文档结构： h5>div>body>html>document
+如果给 h5 和 div 都设置点击事件。当 h5 点击时，不仅会触发自身的点击事件，还会向上冒泡/扩散，触发 div 的点击事件。基于这样一个原理，我们可以使用事件委托来减少代理子元素的点击事件。即 如果有多个元素需要设定点击事件，且它们属于同一个父块，那么给父块绑定一个点击事件，对绑定的子元素进行判断、添加执行语句即可。
+阻止事件冒泡的两种方式：在子元素的点击事件中添加 return false;/event.stopPropagation()
+值得注意的是，return false 不仅组织了事件往上冒泡，也阻止了事件本身。Event.stopPropagation()则只阻止事件往上冒泡，不阻止事件本身。、
+
+11.	自适应实现方式 | em 和 rem 简介
+自适用实现方式主要有两种：
+	根据屏幕大小不同引入不同的 css 文件
+	使用 rem 单位实现自适应布局
+rem 是指相对于根元素的字体大小的单位。简单来说，它是一个相对单位。em 是指相对于父元素的字体大小的单位。使用的时候，rem 是以页面 font-size 作为基准单位进行换算，即 假设界面 font-size=16px,那么 1rem = 16px，如果我们将界面 font-size 设置为32 px,那么 1rem = 32px.因此，当展示不同大小的界面时，分情况设定界面的 font-size 值即可。
+
+12.	浏览器组成
+浏览器主要由以下八个部分组成。
+	用户界面
+用户界面主要包括工具栏，地址栏，前进/后退按钮，数千菜单，可视化页面接在进度等等。
+	浏览器引擎
+用来查询及操作渲染引擎的接口
+	渲染引擎
+用来显示请求的内容，例如，如果请求内容为 html，它负责解析 html 及 css,并将解析后的结果显示出来。
+	网络
+用来完成网络调用，例如 http 请求，它具有平台无关的接口，可以在不同平台上工作。
+	JavaScript 解释器
+用于解释执行 js 代码
+	XML 解析器
+将 XML 文档解析成文档对象模型树。
+	显示后端
+用力啊绘制类似组合选择框及对话框等基本组件
+	数据持久层
+数据持久层将与浏览绘画相关联的各种数据存储在硬盘上。这些数据可能是注入：书签、工具栏设置等这样的高级数据，也可能是诸如：Cookie,安全证书，缓存这样的低级数据
+
+
+13.	http keep-alive 相关知识点 
+http 协议采用“请求-应答”模式，当使用非 Keep-Alive 模式时，每个 请求/应答，客户端和服务端都要新建一个连接，完成之后断开连接。当使用 Keep-Alive 模式时，Keep-Alive 功能使客户端到服务端的连接持续有效，当出现对服务器的后继请求时，Keep-Alive 功能避免了建立或者重新建立连接。
+
+14.	缓存简介
+15.	HTML  的离线储存工作原理
+
+16.	HTML 和 XHTML 关系和区别
+XHTML 是 HTML 向 XML 的一个过渡语言，它比 HTML 更加严谨，但基本语言都还是沿用 HTML 标签。它与 HTML 不同主要表现在以下几个方面。
+1.	XHTML 的标记名称和属性名称必须小写。
+2.	XHTML 必须严格嵌套，标签的顺序必须一一对应。
+3.	XHTML 的标记和空元素也必须封闭，且 XHTML 中属性值必须用引号。
+4.	XHTML 中，属性值必须用完整形式，如 checked = “checked”,不能简写成 checked
+
+17.	介绍微格式
+18.	Src 和 href 区别
+19.	Iframe 框架的优缺点
+20.	如何用 css 创建一个三角形
+21.	Png、jpg、gif、webp 图片格式异同
+22.	Float 定位工作原理
+23.	Transelate 工作原理
+24.	全屏滚动的原理
+25.	状态码及其代表状态
+26.	从输入一个 url 到获取界面过程
+27.	TCP 是如何发起连接和关闭连接的
+28.	SEO 优化概念及做法
+29.	Get 和 post 区别
+30.	Bom的对象
+31.	遇到的跨域问题及其解决方法
+https://blog.csdn.net/lareinalove/article/details/84107476
+32.	Json 和 jsonp 定义及用法
+https://blog.csdn.net/hansexploration/article/details/80314948
+33.	如何优化前端界面
+34.	雪碧图 和 base64字符串优劣
+35.	== 和 === 的区别
+36.	Localstorage|sessionstorage|cookie 区别
+37.	Call,apply,bind 异同| calle 和 caller 作用
+38.	Js 内置对象有|js 基本数据类型|数组常用接口
+39.	Typeof 和 instanceof 区别
+40.	Var,let,const 异同
+41.	浅拷贝和深拷贝区别
+42.	New 一个对象的过程中发生了什么？
+43.	创建函数几种方式 | 函数和构造函数之间的区别
+44.	实例化对象的调用问题（返回基本类型的时候调用函数内容，返回其他的时候无法调用）
+45.	闭包|原型|原型链|作用域链
+46.	Prototype 和 _proto_ 关系是什么
+47.	箭头函数中的 this 与 一般函数中的 this 异同
+48.	前端路由的两种模式
+49.	For….in 迭代和 for……of 迭代的区别
+50.	Async,await,promise
+
